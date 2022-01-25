@@ -33,14 +33,11 @@ import 'shape_clipper.dart';
 import 'showcase_widget.dart';
 import 'tooltip_widget.dart';
 
-enum TooltipPosition { above, below }
-
 class Showcase extends StatefulWidget {
   @override
   final GlobalKey key;
 
   final Widget child;
-  final TooltipPosition tooltipPosition;
   final String? title;
   final String? description;
   final ShapeBorder? shapeBorder;
@@ -76,7 +73,6 @@ class Showcase extends StatefulWidget {
     required this.child,
     this.title,
     required this.description,
-    required this.tooltipPosition,
     this.shapeBorder,
     this.overlayColor = Colors.black45,
     this.overlayOpacity = 0.75,
@@ -117,7 +113,6 @@ class Showcase extends StatefulWidget {
     required this.container,
     required this.height,
     required this.width,
-    this.tooltipPosition = TooltipPosition.above,
     this.title,
     this.description,
     this.shapeBorder,
@@ -314,7 +309,6 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               ),
               ToolTipWidget(
                 position: position,
-                tooltipPosition: widget.tooltipPosition,
                 offset: offset,
                 screenSize: screenSize,
                 title: widget.title,
