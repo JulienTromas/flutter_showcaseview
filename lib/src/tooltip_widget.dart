@@ -26,9 +26,11 @@ import 'package:flutter/material.dart';
 
 import 'get_position.dart';
 import 'measure_size.dart';
+import 'showcase.dart';
 
 class ToolTipWidget extends StatefulWidget {
   final GetPosition? position;
+  final TooltipPosition tooltipPosition;
   final Offset? offset;
   final Size? screenSize;
   final String? title;
@@ -48,6 +50,7 @@ class ToolTipWidget extends StatefulWidget {
 
   ToolTipWidget(
       {this.position,
+      required this.tooltipPosition,
       this.offset,
       this.screenSize,
       this.title,
@@ -70,20 +73,6 @@ class ToolTipWidget extends StatefulWidget {
 
 class _ToolTipWidgetState extends State<ToolTipWidget> {
   Offset? position;
-
-  bool isCloseToTopOrBottom(Offset position) {
-    var height = 120.0;
-    height = widget.contentHeight ?? height;
-    return (widget.screenSize!.height - position.dy) <= height;
-  }
-
-  String findPositionForContent(Offset position) {
-    if (isCloseToTopOrBottom(position)) {
-      return 'ABOVE';
-    } else {
-      return 'BELOW';
-    }
-  }
 
   double _getTooltipWidth() {
     final titleStyle = widget.titleTextStyle ??
@@ -174,8 +163,9 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
   @override
   Widget build(BuildContext context) {
     position = widget.offset;
-    final contentOrientation = findPositionForContent(position!);
-    final contentOffsetMultiplier = contentOrientation == "BELOW" ? 1.0 : -1.0;
+    final contentOrientation = widget.tooltipPosition;
+    final contentOffsetMultiplier =
+        contentOrientation == TooltipPosition.below ? 1.0 : -1.0;
     ToolTipWidget.isArrowUp = contentOffsetMultiplier == 1.0;
 
     final contentY = ToolTipWidget.isArrowUp
