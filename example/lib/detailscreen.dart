@@ -44,6 +44,7 @@ class _DetailState extends State<Detail> {
               child: ListView(
                 children: <Widget>[
                   Showcase(
+                    tooltipPosition: TooltipPosition.above,
                     key: _one,
                     title: 'Title',
                     description: 'Desc',

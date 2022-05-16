@@ -160,6 +160,7 @@ class _MailPageState extends State<MailPage> {
                                 child: Row(
                                   children: <Widget>[
                                     Showcase(
+                                      tooltipPosition: TooltipPosition.above,
                                       key: _one,
                                       description: 'Tap to see menu options',
                                       child: Icon(
@@ -191,6 +192,7 @@ class _MailPageState extends State<MailPage> {
                       ),
                     ),
                     Showcase(
+                      tooltipPosition: TooltipPosition.above,
                       overlayPadding: EdgeInsets.all(5),
                       key: _two,
                       title: 'Profile',
@@ -246,6 +248,7 @@ class _MailPageState extends State<MailPage> {
         ),
       ),
       floatingActionButton: Showcase(
+        tooltipPosition: TooltipPosition.above,
         key: _five,
         title: 'Compose Mail',
         description: 'Click here to compose mail',
@@ -279,6 +282,7 @@ class _MailPageState extends State<MailPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Showcase(
+          tooltipPosition: TooltipPosition.above,
           key: _three,
           description: 'Tap to check mail',
           disposeOnTap: true,
